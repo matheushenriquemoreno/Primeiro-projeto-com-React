@@ -1,10 +1,6 @@
-import { useEffect } from 'react'
 import './listaSuspensa.css'
 
 const ListaSuspensa = (props) => {
-
-    // useEffect((3======zzzz\wwwwwwwwwwwwwwwwwwwwww2wwwwwwwwwww wwwwwwwwwww) => props.aoAlterado(props.itens[0]), []) // array vazio = sem estado 
-
     return (
         <div className='lista-suspensa'>
             <label>{props.label}</label>

@@ -8,24 +8,30 @@ const Formulario = (props) => {
 
     const [nome, setNome] = useState('')
     const [cargo, setCargo] = useState('')
-    const [imagem, setImagem] = useState('')
+    const [github, setGithub] = useState('')
     const [time, setTime] = useState('')
 
-    useEffect(() => console.log('renderizando'), [nome,cargo])
+    useEffect(() => console.log('renderizando'), [nome, cargo])
 
     const aoSalvar = (evento) => {
         evento.preventDefault()
+        
+        let imagemUrl = github;
 
-        props.aoCadastrarColaborador({ // outra forma de criar um objeto em js
+        if(!github.includes('https://github.com/') && !github.includes('.png')){
+            imagemUrl = `https://github.com/${github}.png`
+        }
+
+        props.aoCadastrarColaborador({
             nome,
             cargo,
-            imagem,
+            imagem: imagemUrl,
             time
         });
 
         setNome('')
         setCargo('')
-        setImagem('')
+        setGithub('')
         setTime('')
     }
 
@@ -48,10 +54,10 @@ const Formulario = (props) => {
                     aoAlterado={valor => setCargo(valor)}
                 />
                 <CampoTexto
-                    label="Imagem"
-                    placeholder="Informe o endereço da imagem"
-                    valor={imagem}
-                    aoAlterado={valor => setImagem(valor)}
+                    label="Nome Github"
+                    placeholder="Informe seu GitHub"
+                    valor={github}
+                    aoAlterado={valor => setGithub(valor)}
                 />
                 <ListaSuspensa
                     obrigatorio={true}
@@ -61,7 +67,7 @@ const Formulario = (props) => {
                     aoAlterado={valor => setTime(valor)}
                 />
                 <Botao>
-                    Criar card  
+                    Criar card
                 </Botao>
             </form>
         </section>
